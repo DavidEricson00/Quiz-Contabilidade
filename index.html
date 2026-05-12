@@ -2,86 +2,103 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Game da Contabilidade</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="font-sans antialiased">
+<body class="font-sans antialiased overflow-x-hidden bg-black">
 
-  <!-- ================= TELA DE INÍCIO ================= -->
-  <div id="tela-inicio" class="min-h-screen bg-gradient-to-br from-blue-950 via-indigo-900 to-purple-900 flex items-center justify-center p-6 text-white">
-    <div class="max-w-3xl w-full bg-black/30 border-4 border-yellow-400 rounded-[40px] p-10 shadow-2xl text-center">
-      <h1 class="text-6xl font-black text-yellow-300 mb-4 drop-shadow-lg">
+  <div id="tela-inicio" class="min-h-screen bg-gradient-to-br from-blue-950 via-indigo-900 to-purple-900 flex items-center justify-center p-4 text-white">
+    <div class="max-w-3xl w-full bg-black/30 border-2 sm:border-4 border-yellow-400 rounded-[28px] sm:rounded-[40px] p-5 sm:p-10 shadow-2xl text-center backdrop-blur-md">
+      <h1 class="text-3xl sm:text-5xl md:text-6xl font-black text-yellow-300 mb-4 leading-tight">
         🎮 GAME DA CONTABILIDADE
       </h1>
-      <p class="text-2xl mb-8">
+
+      <p class="text-base sm:text-xl md:text-2xl mb-8">
         Complete o desafio e se torne um Mestre da Contabilidade!
       </p>
-      <div class="grid md:grid-cols-3 gap-4 mb-10 text-lg">
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 text-sm sm:text-base md:text-lg">
         <div class="bg-green-500/20 p-4 rounded-3xl border-2 border-green-400">
           ⭐ 10 Perguntas
         </div>
+
         <div class="bg-blue-500/20 p-4 rounded-3xl border-2 border-blue-400">
           ❤️ 3 Vidas
         </div>
+
         <div class="bg-yellow-500/20 p-4 rounded-3xl border-2 border-yellow-400">
           🏆 Sistema de Pontos
         </div>
       </div>
-      <button onclick="iniciarJogo()" class="bg-yellow-400 hover:scale-105 transition-all text-black text-2xl font-bold px-10 py-5 rounded-3xl shadow-xl">
+
+      <button onclick="iniciarJogo()" class="w-full sm:w-auto bg-yellow-400 active:scale-95 transition-all text-black text-lg sm:text-2xl font-bold px-8 py-4 rounded-3xl shadow-xl">
         ▶ COMEÇAR JOGO
       </button>
     </div>
   </div>
 
-  <!-- ================= TELA DO JOGO ================= -->
-  <div id="tela-jogo" class="hidden min-h-screen bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-950 flex items-center justify-center p-6 text-white">
-    <div class="max-w-4xl w-full bg-black/30 border-4 border-yellow-400 rounded-[40px] p-8 shadow-2xl">
-      <div class="flex justify-between items-center mb-6">
-        <div id="pontos-display" class="text-2xl font-bold">⭐ Pontos: 0</div>
-        <div id="vidas-display" class="text-2xl font-bold">❤️ Vidas: 3</div>
-      </div>
-      <div class="bg-white text-black rounded-[30px] p-8 shadow-xl">
-        <p id="contador-pergunta" class="text-lg font-bold text-gray-500 mb-4">
-          Pergunta 1 de 10
-        </p>
-        <h2 id="texto-pergunta" class="text-4xl font-black mb-8"></h2>
-        
-        <div id="opcoes-container" class="grid gap-5">
-          <!-- Botões injetados via JS -->
+  <div id="tela-jogo" class="hidden min-h-screen bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-950 flex items-center justify-center p-3 sm:p-6 text-white">
+    <div class="max-w-4xl w-full bg-black/30 border-2 sm:border-4 border-yellow-400 rounded-[28px] sm:rounded-[40px] p-4 sm:p-8 shadow-2xl backdrop-blur-md">
+
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-0 justify-between items-center mb-6">
+        <div id="pontos-display" class="text-lg sm:text-2xl font-bold text-center">
+          ⭐ Pontos: 0
         </div>
 
-        <div id="resultado-texto" class="mt-8 text-center text-2xl font-bold hidden"></div>
+        <div id="vidas-display" class="text-lg sm:text-2xl font-bold text-center">
+          ❤️ Vidas: 3
+        </div>
+      </div>
+
+      <div class="bg-white text-black rounded-[24px] sm:rounded-[30px] p-5 sm:p-8 shadow-xl">
+
+        <p id="contador-pergunta" class="text-sm sm:text-lg font-bold text-gray-500 mb-4">
+          Pergunta 1 de 10
+        </p>
+
+        <h2 id="texto-pergunta" class="text-2xl sm:text-3xl md:text-4xl font-black mb-8 leading-snug break-words"></h2>
+
+        <div id="opcoes-container" class="grid gap-4"></div>
+
+        <div id="resultado-texto" class="mt-8 text-center text-lg sm:text-2xl font-bold hidden"></div>
 
         <div id="proxima-container" class="text-center mt-8 hidden">
-          <button onclick="proxima()" class="bg-purple-700 text-white px-10 py-4 rounded-3xl text-2xl font-bold hover:scale-105 transition-all">
+          <button onclick="proxima()" class="w-full sm:w-auto bg-purple-700 text-white px-8 py-4 rounded-3xl text-lg sm:text-2xl font-bold active:scale-95 transition-all">
             Próxima Pergunta ▶
           </button>
         </div>
+
       </div>
     </div>
   </div>
 
-  <!-- ================= TELA DE FIM ================= -->
-  <div id="tela-fim" class="hidden min-h-screen bg-gradient-to-br from-yellow-300 to-orange-500 flex items-center justify-center p-6">
-    <div class="bg-white rounded-[40px] p-10 max-w-2xl w-full text-center shadow-2xl border-4 border-yellow-500">
-      <h1 class="text-6xl font-black text-yellow-600 mb-6">
+  <div id="tela-fim" class="hidden min-h-screen bg-gradient-to-br from-yellow-300 to-orange-500 flex items-center justify-center p-4">
+    <div class="bg-white rounded-[28px] sm:rounded-[40px] p-6 sm:p-10 max-w-2xl w-full text-center shadow-2xl border-2 sm:border-4 border-yellow-500">
+
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-black text-yellow-600 mb-6 leading-tight">
         🏆 PARABÉNS!
       </h1>
-      <p id="pontuacao-final" class="text-3xl font-bold mb-4">
+
+      <p id="pontuacao-final" class="text-2xl sm:text-3xl font-bold mb-4">
         Você fez 0 pontos!
       </p>
-      <p class="text-xl mb-8">
+
+      <p class="text-base sm:text-xl mb-8">
         Você completou o desafio dos princípios da contabilidade.
       </p>
-      <div class="text-7xl mb-6">🎖️</div>
-      <button onclick="window.location.reload()" class="bg-purple-700 text-white px-10 py-4 rounded-3xl text-2xl font-bold hover:scale-105 transition-all">
+
+      <div class="text-5xl sm:text-7xl mb-6">
+        🎖️
+      </div>
+
+      <button onclick="window.location.reload()" class="w-full sm:w-auto bg-purple-700 text-white px-8 py-4 rounded-3xl text-lg sm:text-2xl font-bold active:scale-95 transition-all">
         🔄 JOGAR NOVAMENTE
       </button>
+
     </div>
   </div>
 
-  <!-- ================= LÓGICA DO JOGO (JAVASCRIPT) ================= -->
   <script>
     const perguntas = [
       {
@@ -176,17 +193,15 @@
       }
     ];
 
-    // Variáveis de Estado
     let indice = 0;
     let pontos = 0;
     let vidas = 3;
     let respondido = false;
 
-    // Referências aos elementos do HTML
     const telaInicio = document.getElementById("tela-inicio");
     const telaJogo = document.getElementById("tela-jogo");
     const telaFim = document.getElementById("tela-fim");
-    
+
     const pontosDisplay = document.getElementById("pontos-display");
     const vidasDisplay = document.getElementById("vidas-display");
     const contadorPergunta = document.getElementById("contador-pergunta");
@@ -204,41 +219,58 @@
 
     function renderizarPergunta() {
       respondido = false;
+
       resultadoTexto.classList.add("hidden");
       proximaContainer.classList.add("hidden");
 
       contadorPergunta.textContent = `Pergunta ${indice + 1} de ${perguntas.length}`;
       textoPergunta.textContent = perguntas[indice].pergunta;
+
       pontosDisplay.textContent = `⭐ Pontos: ${pontos}`;
       vidasDisplay.textContent = `❤️ Vidas: ${vidas}`;
 
       opcoesContainer.innerHTML = "";
-      
+
       perguntas[indice].opcoes.forEach((opcao, i) => {
         const button = document.createElement("button");
+
         button.textContent = opcao;
-        button.className = "bg-gradient-to-r from-yellow-300 to-orange-400 text-black text-xl font-bold p-5 rounded-3xl hover:scale-105 transition-all shadow-lg";
-        button.onclick = () => responder(i, button);
+
+        button.className =
+          "w-full bg-gradient-to-r from-yellow-300 to-orange-400 text-black text-base sm:text-xl font-bold p-4 sm:p-5 rounded-3xl active:scale-95 transition-all shadow-lg leading-snug break-words";
+
+        button.onclick = () => responder(i);
+
         opcoesContainer.appendChild(button);
       });
     }
 
-    function responder(alternativaEscolhida, botaoClicado) {
+    function responder(alternativaEscolhida) {
       if (respondido) return;
+
       respondido = true;
 
       const correta = perguntas[indice].correta;
 
       if (alternativaEscolhida === correta) {
         pontos += 10;
+
         pontosDisplay.textContent = `⭐ Pontos: ${pontos}`;
+
         resultadoTexto.textContent = "🎉 Resposta correta! +10 pontos";
-        resultadoTexto.className = "mt-8 text-center text-2xl font-bold text-green-600";
+
+        resultadoTexto.className =
+          "mt-8 text-center text-lg sm:text-2xl font-bold text-green-600";
       } else {
         vidas -= 1;
+
         vidasDisplay.textContent = `❤️ Vidas: ${vidas}`;
-        resultadoTexto.textContent = "❌ Resposta errada! Você perdeu 1 vida";
-        resultadoTexto.className = "mt-8 text-center text-2xl font-bold text-red-600";
+
+        resultadoTexto.textContent =
+          "❌ Resposta errada! Você perdeu 1 vida";
+
+        resultadoTexto.className =
+          "mt-8 text-center text-lg sm:text-2xl font-bold text-red-600";
       }
 
       resultadoTexto.classList.remove("hidden");
@@ -261,14 +293,20 @@
 
     function finalizarJogo() {
       telaJogo.classList.add("hidden");
+
       telaFim.classList.remove("hidden");
+
       pontuacaoFinal.textContent = `Você fez ${pontos} pontos!`;
-      
-      // Muda a mensagem se perdeu todas as vidas
+
       if (vidas <= 0) {
-        document.querySelector("#tela-fim h1").textContent = "❌ GAME OVER";
-        document.querySelector("#tela-fim h1").className = "text-6xl font-black text-red-600 mb-6";
-        document.querySelector("#tela-fim p:nth-of-type(2)").textContent = "Você perdeu todas as suas vidas.";
+        document.querySelector("#tela-fim h1").textContent =
+          "❌ GAME OVER";
+
+        document.querySelector("#tela-fim h1").className =
+          "text-4xl sm:text-5xl md:text-6xl font-black text-red-600 mb-6 leading-tight";
+
+        document.querySelector("#tela-fim p:nth-of-type(2)").textContent =
+          "Você perdeu todas as suas vidas.";
       }
     }
   </script>
